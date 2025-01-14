@@ -1,62 +1,94 @@
-# Your startup name here
-Hello I have modified this file
-[My Notes](notes.md)
+# Gigglr
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-
-> [!NOTE]
->  This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
-
-> [!NOTE]
->  If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
+Gigglr is a random joke generator which is a fun and interactive web application designed to provide users with a continuous stream of random jokes. Users can log in to save their favorite jokes for future laughs and view them in a personalized list. The app fetches jokes from a third-party API, ensuring a wide variety of humor. Additionally, it updates saved jokes in real-time, allowing users to share their favorites with friends instantly. With a clean and responsive design, the application is easy to use and guarantees a lighthearted experience for all.
 
 ## 🚀 Specification Deliverable
 
-> [!NOTE]
->  Fill in this sections as the submission artifact for this deliverable. You can refer to this [example](https://github.com/webprogramming260/startup-example/blob/main/README.md) for inspiration.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
 - [ ] Description of how you will use each technology
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Need a good laugh? The Random Joke Generator delivers endless fun by fetching random jokes tailored to your mood. Save your favorites, revisit them anytime, and share the joy with friends in real time. With a clean and intuitive design, this app ensures you never miss a punchline!
 
 ### Design
 
 ![Design image](placeholder.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The design of the Random Joke Generator revolves around simplicity and user interactivity, as illustrated in the sequence diagram. The application begins with the user fetching a random joke, which the backend retrieves from an external API and delivers to the user interface. A "Save to Favorites" button allows users to save a joke they enjoy, sending a request to the backend to store the joke in a database tied to their account. Once saved, the server confirms the action and broadcasts the updated favorite list to all connected clients in real time using WebSocket technology. This ensures that the user's saved jokes are accessible across devices and visible to others instantly. The design incorporates separate pages for login, joke display, and favorites, leveraging React components and routing to create a dynamic and responsive user experience.
 
 ```mermaid
 sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
+    actor User
+    participant Server
+    participant JokeAPI
+    participant WebSocket Clients
+
+    User->>Server: Login with credentials
+    Server-->>User: Authentication success/failure
+    User->>Server: Fetch random joke
+    Server->>JokeAPI: Request random joke
+    JokeAPI-->>Server: Joke response
+    Server-->>User: Deliver joke
+    User->>Server: Save joke to favorites
+    Server-->>User: Save confirmation
+    Server-->>WebSocket Clients: Broadcast "User saved a joke: [Joke text]"
 ```
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Secure user login.
+- Display random jokes fetched from an external API.
+- Save favorite jokes for later viewing.
+- View and manage a list of saved jokes.
+- Realtime updates when a joke is saved.
+- Responsive and engaging design.
+- 
+## Technologies Used
 
-### Technologies
+### HTML
+- Basic structure for the app:
+  - **Login Page**: Allow users to log in or sign up.
+  - **Joke Display Page**: Show a random joke fetched from the server.
+  - **Favorites Page**: Display and manage saved jokes.
 
-I am going to use the required technologies in the following ways.
+### CSS
+- **Styling Features**:
+  - Clean and responsive UI for seamless user experience on any device.
+  - Animated joke cards for visual appeal.
+  - A color scheme that enhances readability and maintains a playful vibe.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+### React
+- **Componentized Structure**:
+  - **Login Form**: Handles user authentication.
+  - **Joke Display**: Fetches and shows random jokes dynamically.
+  - **Favorites List**: Displays saved jokes for logged-in users.
+- **Routing**: Utilizes React Router for smooth navigation between pages.
+
+### Service
+- **Backend Endpoints**:
+  - Fetching random jokes from a third-party API.
+  - User login and authentication.
+  - Saving and retrieving favorite jokes for each user.
+
+### DB/Login
+- **MongoDB**:
+  - Stores user credentials securely with hashing.
+  - Keeps a record of user-specific saved jokes.
+- **Access Restrictions**:
+  - Only logged-in users can save and retrieve jokes.
+
+### WebSocket
+- **Real-Time Updates**:
+  - Broadcasts notifications to all users when a new joke is added to the shared favorites list.
+  - Ensures real-time interactivity across connected clients.
+
 
 ## 🚀 AWS deliverable
 
