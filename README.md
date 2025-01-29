@@ -105,8 +105,6 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 ✔ JavaScript Enhancements (dynamically updating username & jokes)
 ✔ Navigation & Accessibility (structured menu & screen reader-friendly)
 ✔ Data Persistence via URL Parameters (preserves login details)
-
-Your HTML is well-structured, readable, and properly uses elements for their intended purpose. 🚀 Let me know if you want any improvements!
 - [x] **Links** - Included links for each html page and links to generate jokes page from the login.  Also included link to github on each page.
 - [x] **Text** - text in the about page and text for the jokes generated/saved
 - [x] **3rd party API placeholder** - Inluded a generate button that will pull jokes from a 3rd party.
