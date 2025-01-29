@@ -28,72 +28,29 @@
     </header>
 
     <main>
-      <div class="players">
-        Player:
-        <span class="player-name">Mystery player</span>
-      </div>
+      <h2>Click the button to see a random joke!</h2>
+      <button onclick="generateJoke()">Generate Joke</button>
+      <p id="joke"></p>
+
+      <h3>Saved Jokes from Users</h3>
       <ul class="notification">
-        <li class="player-name">Tim started a new game</li>
-        <li class="player-name">Ada started a new game</li>
-        <li class="player-name">Tim scored 337</li>
+        <li class="user-name">Sarah saved "I told my suitcase there'd be no vacations… now it’s emotional baggage."</li>
+        <li class="user-name">Ashley saved "Parallel lines have so much in common. Too bad they’ll never meet."</li>
+        <li class="user-name">James saved "Why did the scarecrow win an award? He was outstanding in his field."</li>
       </ul>
 
-      <!-- More formatting with old style HTML -->
-      <br />
-
-      <div>
-        <label for="count">Score</label>
-        <input type="text" id="count" value="--" readonly />
-      </div>
-
-      <br />
-
-      <div>
-        <button>Reset</button>
-      </div>
-
-      <br />
-
-      <div>
-        <table>
-          <tr>
-            <td>
-              <button>
-                <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                  <!-- SVG
-                    M move <to x,y>
-                    Q quadratic curve <control point x,y> <to x,y>
-                -->
-                  <path d="M 95,5 95,95 5,95 Q 5,5 95,5" fill="green" />
-                </svg>
-              </button>
-            </td>
-            <td>
-              <button>
-                <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                  <path d="M5,5 5,95 95,95 Q 95,5 5,5" fill="red" />
-                </svg>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button>
-                <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                  <path d="M5,5 95,5 95,95 Q 5,95 5,5" fill="blue" />
-                </svg>
-              </button>
-            </td>
-            <td>
-              <button>
-                <svg aria-hidden="true" viewBox="0 0 100 100" height="100" width="100">
-                  <path d="M95,5 5,5 5,95 Q 95,95 95,5" fill="yellow" />
-                </svg>
-              </button>
-            </td>
-          </tr>
-        </table>
-      </div>
+      <script>
+          function generateJoke() {
+              const jokes = [
+                  "I told my suitcase there'd be no vacations… now it’s emotional baggage.",
+                  "Parallel lines have so much in common. Too bad they’ll never meet.",
+                  "Why did the scarecrow win an award? He was outstanding in his field."
+              ];
+              
+              const randomIndex = Math.floor(Math.random() * jokes.length);
+              document.getElementById("joke").innerText = jokes[randomIndex];
+          }
+      </script>
     </main>
 
     <footer>
