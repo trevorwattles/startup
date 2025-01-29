@@ -2,19 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gigglr</title>
+    <title>Gigglr HTML</title>
     <link rel="icon" href="favicon.ico" />
   </head>
   <body>
-    <!-- Use header, main, and footer elements to give semantic structure -->
     <header>
       <h1>Gigglr<sup>&reg;</sup></h1>
-
-      <!-- Navigation elements -->
       <nav>
-        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
         <menu>
           <li><a href="index.html">Home</a></li>
           <li><a href="generateJokes.html">Generate Jokes</a></li>
@@ -22,13 +17,11 @@
           <li><a href="about.html">About</a></li>
         </menu>
       </nav>
-
-      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
       <hr />
     </header>
 
     <main>
-      <h2>Click the button to see a random joke!</h2>
+      <h1 id="welcome-message">Welcome, Mystery User</h1>
       <button onclick="generateJoke()">Generate Joke</button>
       <p id="joke"></p>
 
@@ -40,16 +33,23 @@
       </ul>
 
       <script>
-          function generateJoke() {
-              const jokes = [
-                  "I told my suitcase there'd be no vacations… now it’s emotional baggage.",
-                  "Parallel lines have so much in common. Too bad they’ll never meet.",
-                  "Why did the scarecrow win an award? He was outstanding in his field."
-              ];
-              
-              const randomIndex = Math.floor(Math.random() * jokes.length);
-              document.getElementById("joke").innerText = jokes[randomIndex];
-          }
+        function getUsernameFromURL() {
+          const params = new URLSearchParams(window.location.search);
+          return params.get("username") || "Mystery User";
+        }
+        
+        document.getElementById("welcome-message").innerText = "Welcome, " + getUsernameFromURL();
+        
+        function generateJoke() {
+          const jokes = [
+            "I told my suitcase there'd be no vacations… now it’s emotional baggage.",
+            "Parallel lines have so much in common. Too bad they’ll never meet.",
+            "Why did the scarecrow win an award? He was outstanding in his field."
+          ];
+          
+          const randomIndex = Math.floor(Math.random() * jokes.length);
+          document.getElementById("joke").innerText = jokes[randomIndex];
+        }
       </script>
     </main>
 

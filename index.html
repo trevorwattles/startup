@@ -29,19 +29,29 @@
 
     <main>
       <h1>Welcome to Gigglr</h1>
-      <form method="get" action="generateJokes.html">
+      <form method="get" action="generateJokes.html" onsubmit="saveUsername()">
         <div>
           <span>@</span>
-          <input type="text" placeholder="your@email.com" />
+          <input type="text" id="email" name="username" placeholder="your@email.com" required />
         </div>
         <div>
           <span>🔒</span>
-          <input type="password" placeholder="password" />
+          <input type="password" placeholder="password" required />
         </div>
         <button type="submit">Login</button>
         <button type="submit">Create</button>
       </form>
     </main>
+
+    <script>
+      function saveUsername() {
+        const emailInput = document.getElementById("email").value;
+        if (emailInput) {
+          const form = document.querySelector("form");
+          form.action = `generateJokes.html?username=${encodeURIComponent(emailInput)}`;
+        }
+      }
+    </script>
 
     <footer>
       <hr />
