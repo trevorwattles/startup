@@ -20,7 +20,7 @@ To make your web server accessible via a memorable and secure domain name, use A
 
 ## HTML Notes
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+To deploy the **Simon HTML** project, use a **POSIX-compliant console** (not PowerShell or CMD) and run `deployFiles.sh` from the project directory. The script performs three key tasks: **deleting any previous deployment**, **uploading all project files**, and **ensuring Caddy hosts the site** under the `simon` subdomain (e.g., `simon.yourdomain.click`). To execute the deployment, use the command `./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s simon`, replacing the placeholders with your actual key and domain. For example, a typical deployment command might be `./deployFiles.sh -k ~/keys/production.pem -h yourdomain.click -s simon`. After deployment, verify that your project is accessible online and update `notes.md` with any relevant observations.
 
 hello I have modified this file
 
