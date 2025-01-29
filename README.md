@@ -99,15 +99,21 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - index.html, generateJokes.html, savedJokes.html, and about.html
+- [x] **Proper HTML element usage** - ✔ Proper Semantic Elements (header, nav, main, footer, etc)
+✔ Correct Use of Forms & Inputs (email, password, submit buttons)
+✔ JavaScript Enhancements (dynamically updating username & jokes)
+✔ Navigation & Accessibility (structured menu & screen reader-friendly)
+✔ Data Persistence via URL Parameters (preserves login details)
+
+Your HTML is well-structured, readable, and properly uses elements for their intended purpose. 🚀 Let me know if you want any improvements!
+- [x] **Links** - Included links for each html page and links to generate jokes page from the login.  Also included link to github on each page.
+- [x] **Text** - text in the about page and text for the jokes generated/saved
+- [x] **3rd party API placeholder** - Inluded a generate button that will pull jokes from a 3rd party.
+- [x] **Images** - created a favicon.ico for the icon in the top and also added an image in the about section.
+- [x] **Login placeholder** - Username and password that then takes you to the generate jokes page.
+- [x] **DB data placeholder** - Added a html page that displays all of the users saved jokes.
+- [x] **WebSocket placeholder** - added a placeholder that shows all of the recently saved jokes by users. 
 
 ## 🚀 CSS deliverable
 
