@@ -22,7 +22,37 @@ To make your web server accessible via a memorable and secure domain name, use A
 
 To deploy the **Simon HTML** project, use a **POSIX-compliant console** (not PowerShell or CMD) and run `deployFiles.sh` from the project directory. The script performs three key tasks: **deleting any previous deployment**, **uploading all project files**, and **ensuring Caddy hosts the site** under the `simon` subdomain (e.g., `simon.yourdomain.click`). To execute the deployment, use the command `./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s simon`, replacing the placeholders with your actual key and domain. For example, a typical deployment command might be `./deployFiles.sh -k ~/keys/production.pem -h yourdomain.click -s simon`. After deployment, verify that your project is accessible online and update `notes.md` with any relevant observations.
 
-hello I have modified this file
+# CSS Notes
+
+## Overview
+CSS (Cascading Style Sheets) enhances HTML by providing styling, responsiveness, and dynamic rendering capabilities. It allows developers to animate elements, apply custom fonts, and adapt layouts to different devices.
+
+## CSS Rules  
+CSS rules consist of selectors that target elements and declarations that define properties like color, font, and spacing. Styles can be applied in three ways:  
+1. **Inline** - using the `style` attribute within an element.  
+2. **Internal** - using a `<style>` tag inside the HTML document.  
+3. **External** - linking to a separate `.css` file via the `<link>` element (preferred method).  
+
+## The CSS Cascade  
+The cascade determines how styles are applied based on inheritance and specificity, with lower-level rules overriding higher-level ones. Developers can inspect styles in a browser’s developer tools to understand how rules are applied.
+
+## The Box Model  
+The box model defines an element’s structure using four layers:  
+- **Content** – The actual text or image inside an element.  
+- **Padding** – Space between the content and the border, inheriting background styles.  
+- **Border** – The outline surrounding the padding and content.  
+- **Margin** – Space outside the border, affecting layout and spacing.  
+The `box-sizing` property determines whether width and height include padding and border (`border-box`) or only content (`content-box`).
+
+## CSS Versions  
+CSS has evolved through different versions:  
+- **CSS1 (1996)** – Introduced basic selectors, fonts, colors, margins, and borders.  
+- **CSS2 (1998)** – Added positioning, `z-index`, bidirectional text, and shadows.  
+- **CSS2.1 (2011)** – Removed incompatible features from CSS2.  
+- **CSS3 (1999–present)** – Modularized enhancements for media queries, box layouts, multi-columns, and advanced selectors.  
+
+CSS continues to evolve, with improvements in layout techniques, animations, and responsive design.
+
 
 ## first instruction notes
 
