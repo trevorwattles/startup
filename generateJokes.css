@@ -1,0 +1,146 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Dark theme */
+  body {
+    background-color: #121212;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  /* Header Styling */
+  header {
+    width: 100%;
+    padding: 20px;
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  h1 {
+    font-size: 2rem;
+    color: #ffcc00;
+  }
+  
+  /* Navigation Styling */
+  nav menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 20px;
+    padding: 10px;
+  }
+  
+  nav menu li {
+    display: inline;
+  }
+  
+  nav menu a {
+    text-decoration: none;
+    color: #ffcc00;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  nav menu a:hover {
+    color: #ff9900;
+    text-decoration: underline;
+  }
+  
+  /* Main Content */
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+  }
+  
+  /* Welcome Message */
+  #welcome-message {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #ffcc00;
+  }
+  
+  /* Joke Generator Button */
+  button {
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #ff9900;
+  }
+  
+  /* Joke Text */
+  #joke {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-top: 10px;
+    color: #ffcc00;
+  }
+  
+  /* Saved Jokes Section */
+  h3 {
+    margin-top: 30px;
+    color: #ffcc00;
+  }
+  
+  .notification {
+    list-style: none;
+    padding: 10px;
+    max-width: 400px;
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  }
+  
+  .notification li {
+    padding: 10px;
+    border-bottom: 1px solid #444;
+  }
+  
+  .notification li:last-child {
+    border-bottom: none;
+  }
+  
+  .user-name {
+    color: #bbb;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  /* Footer */
+  footer {
+    margin-top: 20px;
+    padding: 10px;
+    background: #1e1e1e;
+    width: 100%;
+  }
+  
+  footer a {
+    color: #ffcc00;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    color: #ff9900;
+    text-decoration: underline;
+  }
+  
