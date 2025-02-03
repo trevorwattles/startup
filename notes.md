@@ -53,6 +53,25 @@ CSS has evolved through different versions:
 
 CSS continues to evolve, with improvements in layout techniques, animations, and responsive design.
 
+# CSS Selectors
+
+## Overview  
+CSS selectors define how styles apply to elements in an HTML document. There are multiple types of selectors, including element selectors (e.g., `body {}`), class selectors (e.g., `.summary {}`), and ID selectors (e.g., `#physics {}`), each used to target elements based on different criteria.
+
+## Combinators  
+Combinators specify relationships between elements, such as descendant selectors (`section h2 {}`), child selectors (`section > p {}`), and sibling selectors (`h2 ~ p {}`), allowing for more precise styling.
+
+## Attribute & Pseudo Selectors  
+Attribute selectors target elements based on attributes (e.g., `p[class='summary'] {}`), while pseudo selectors apply styles based on state or position (e.g., `section:hover {}` changes styling when hovered over).
+
+## Example  
+To highlight a section only on hover, use:  
+```css
+section:hover {
+  border-left: solid 1em purple;
+}
+
+
 
 ## first instruction notes
 
