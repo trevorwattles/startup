@@ -45,18 +45,25 @@
         
         function generateJoke() {
           const jokes = [
-            "I told my suitcase there'd be no vacations… now it’s emotional baggage.",
-            "Parallel lines have so much in common. Too bad they’ll never meet.",
-            "Why did the scarecrow win an award? He was outstanding in his field."
+              "I told my suitcase there'd be no vacations… now it’s emotional baggage.",
+              "Parallel lines have so much in common. Too bad they’ll never meet.",
+              "Why did the scarecrow win an award? He was outstanding in his field."
           ];
           
           const randomIndex = Math.floor(Math.random() * jokes.length);
           const jokeText = jokes[randomIndex];
 
-          document.getElementById("joke").innerText = jokeText;
+          const jokeElement = document.getElementById("joke");
+
+          jokeElement.innerText = jokeText;
+          jokeElement.style.opacity = "1";
+          jokeElement.style.transform = "translateY(0)";
+          jokeElement.style.border = "2px solid #ffcc00";
 
           document.getElementById("save-joke-btn").style.display = "block";
-        }
+      }
+
+
 
         function saveJoke() {
           const jokeText = document.getElementById("joke").innerText;
