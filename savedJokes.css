@@ -56,7 +56,7 @@
     text-decoration: underline;
   }
   
-  /* Main Content */
+  
   main {
     display: flex;
     flex-direction: column;
@@ -65,14 +65,13 @@
     min-height: 60vh;
   }
   
-  /* Saved Jokes Section */
+
   h2 {
     font-size: 1.5rem;
     margin-bottom: 20px;
     color: #ffcc00;
   }
   
-  /* Saved Jokes List */
   .saved-jokes {
     list-style: none;
     padding: 10px;
@@ -95,7 +94,7 @@
     border-bottom: none;
   }
   
-  /* Footer */
+  
   footer {
     margin-top: 20px;
     padding: 10px;

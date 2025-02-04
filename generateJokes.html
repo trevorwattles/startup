@@ -26,6 +26,8 @@
       <button onclick="generateJoke()">Generate Joke</button>
       <p id="joke"></p>
 
+      <button id="save-joke-btn" onclick="saveJoke()" style="display: none;">Save Joke</button>
+
       <h3>Saved Jokes from Users</h3>
       <ul class="notification">
         <li class="user-name">Sarah saved "I told my suitcase there'd be no vacations… now it’s emotional baggage."</li>
@@ -49,7 +51,18 @@
           ];
           
           const randomIndex = Math.floor(Math.random() * jokes.length);
-          document.getElementById("joke").innerText = jokes[randomIndex];
+          const jokeText = jokes[randomIndex];
+
+          document.getElementById("joke").innerText = jokeText;
+
+          document.getElementById("save-joke-btn").style.display = "block";
+        }
+
+        function saveJoke() {
+          const jokeText = document.getElementById("joke").innerText;
+          if (jokeText) {
+            alert("Joke saved: " + jokeText);
+          }
         }
       </script>
     </main>
@@ -62,3 +75,4 @@
     </footer>
   </body>
 </html>
+
