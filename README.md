@@ -117,12 +117,13 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Header, footer, and main content body** - I made the header and footer full-width with a dark background, fixed the header at the top with a shadow, and centered the main content vertically with padding to avoid overlap with the fixed header.
+- [x] **Navigation elements** - I styled the navigation elements by using a `<menu>` inside `<nav>`, making it a flex container centered with evenly spaced items, and giving the links a bold, yellow color that changes to orange with an underline on hover. However, note that `<menu>` is not the typical element used for navigation; `<ul>` is more common.
+
+- [x] **Responsive to window resizing** - The header and footer span the full width of the viewport, while the main content remains centered using display: flex and min-height: 80vh to adjust with varying screen heights. The form and input fields use max-width: 400px and width: 100%, making them responsive while maintaining a structured layout. Additionally, using gap and padding for spacing ensures elements remain visually balanced across different screen sizes.
+- [x] **Application elements** - I designed interactive components like a joke generator with dynamically updating text, a save joke button that appears conditionally, and a personalized welcome message extracted from the URL parameters. Additionally, the navigation menu, notifications, and structured layout ensure a user-friendly experience, while smooth animations and transitions enhance interactivity and responsiveness.
+- [x] **Application text content** - I used application text content dynamically by displaying a personalized welcome message based on the URL parameters and updating the joke text upon button clicks. Additionally, you included pre-saved jokes from other users as part of the UI, reinforcing user interaction and engagement with meaningful and context-aware content.
+- [x] **Application images** - I incorporated application images by including a favicon (favicon.ico) in the `<head>` section, which helps with branding and recognition in browser tabs. I also included an image in the about section with a feded gray border, the overall design relies on structured text and styled elements to create a visually engaging experience without requiring additional graphics.
 
 ## 🚀 React part 1: Routing deliverable
 
