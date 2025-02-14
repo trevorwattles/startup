@@ -142,7 +142,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
     * Clean the server.
     * Copy the contents of the `dist` directory.  This optimized the deliverable for production.
 - [x] **Components** -
-created functional React components, often within separate files, and then importing and using them within other components or the main application.  JSX syntax is used within these components to define the structure and elements of the user interface.
+created functional React components, often within separate files, and then importing and using them within other components or the main application.  JSX syntax is used within these components to define the structure and elements of the user interface. The login button will take you to the generate jokes page.
 - [x] **Router** - used React Router to define routes, associating specific URLs with components like Login and About. Navigation between these components is achieved using <NavLink> components, which provide active styling and accessibility features, or programmatic navigation functions provided by React Router.
 
 ## 🚀 React part 2: Reactivity
