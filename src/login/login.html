@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gigglr</title>
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="indexStyles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Gigglr<sup>&reg;</sup></h1>
+
+      <nav>
+        <menu>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="generateJokes.html">Generate Jokes</a></li>
+          <li><a href="savedJokes.html">Saved Jokes</a></li>
+          <li><a href="about.html">About</a></li>
+        </menu>
+      </nav>
+
+      <hr />
+    </header>
+
+    <main>
+      <form method="get" action="generateJokes.html" onsubmit="saveUsername()">
+        <h1>Sign in</h1>
+        <div>
+          <span>📧</span>
+          <input type="text" id="email" name="username" placeholder="your@email.com" required />
+        </div>
+        <div>
+          <span>🔒</span>
+          <input type="password" placeholder="password" required />
+        </div>
+        <button type="submit">Login</button>
+        <button type="submit">Create</button>
+      </form>
+    </main>
+
+    <script>
+      function saveUsername() {
+        const emailInput = document.getElementById("email").value;
+        if (emailInput) {
+          const form = document.querySelector("form");
+          form.action = `generateJokes.html?username=${encodeURIComponent(emailInput)}`;
+        }
+      }
+    </script>
+
+    <footer>
+      <hr />
+      <span class="text-reset">Trevor Wattles</span>
+      <br />
+      <a href="https://github.com/trevorwattles/startup">GitHub</a>
+    </footer>
+  </body>
+</html>
