@@ -6,8 +6,8 @@
 }
 
 .body {
-  background-color: #121212;
-  color: #fff;
+  background-color: #121212 !important;
+  color: #fff !important;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -15,10 +15,15 @@
   min-height: 100vh;
   justify-content: space-between; /* Ensure content takes space and footer stays at the bottom */
 }
-
+hr {
+  width: 100% !important;
+  border: none !important;
+  border-top: 2px solid white !important; /* Adjust thickness */
+  margin: 5px 0 !important;
+}
 header {
   width: 100%;
-  padding: 20px;
+  padding: 10px !important;
   background-color: #1e1e1e;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   position: fixed;
@@ -28,6 +33,7 @@ header {
 }
 
 main {
+  margin-top: 100px !important;
   flex: 1; /* Makes the main content take up remaining space */
   display: flex;
   flex-direction: column;
@@ -35,13 +41,19 @@ main {
   justify-content: center;
   width: 100%;
 }
+header h1 {
+  font-size: 2rem !important;
+  font-weight: bold !important;
+  color: #ffcc00 !important;
+  text-align: center !important;
+}
 
 h1 {
   font-size: 2rem;
   color: #ffcc00;
 }
 
-nav menu {
+nav ul {
   display: flex;
   justify-content: center;
   list-style: none;
@@ -49,18 +61,18 @@ nav menu {
   padding: 10px;
 }
 
-nav menu li {
+nav ul li {
   display: inline;
 }
 
-nav menu a {
+nav ul a {
   text-decoration: none;
   color: #ffcc00;
-  font-weight: bold;
+  font-weight: bold !important;
   transition: 0.3s;
 }
 
-nav menu a:hover {
+nav ul a:hover {
   color: #ff9900;
   text-decoration: underline;
 }

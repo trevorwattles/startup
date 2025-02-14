@@ -1,6 +1,10 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
+import './saved/saved.css';
+import './about/about.css';
+import './login/login.css';
+import './generate/generate.css';
 
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
@@ -16,12 +20,12 @@ export default function App() {
           <h1>Gigglr<sup>&reg;</sup></h1>
 
           <nav>
-            <menu>
+            <ul>
               <li><NavLink to="/" className={({ isActive }) => isActive ? "active-link" : ""}>Home</NavLink></li>
               <li><NavLink to="/generate" className={({ isActive }) => isActive ? "active-link" : ""}>Generate Jokes</NavLink></li>
               <li><NavLink to="/saved" className={({ isActive }) => isActive ? "active-link" : ""}>Saved Jokes</NavLink></li>
               <li><NavLink to="/about" className={({ isActive }) => isActive ? "active-link" : ""}>About</NavLink></li>
-            </menu>
+            </ul>
           </nav>
 
           <hr />
