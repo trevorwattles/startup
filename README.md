@@ -129,9 +129,21 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - Routing between login and voting components.
+- [x] **Bundled using Vite** -
+* **Project Setup:** Initialized the project as an npm package and installed Vite.
+* **Configuration:** Configured `package.json` with `dev`, `build`, and `preview` scripts.
+* **Building:** Ran the `build` script, which:
+    * Transpiled JSX to JavaScript.
+    * Bundled code into optimized chunks.
+    * Generated static assets.
+    * Created a production build in the `dist` directory.
+* **Deployment:** Used a deployment script to:
+    * Build the project.
+    * Clean the server.
+    * Copy the contents of the `dist` directory.  This optimized the deliverable for production.
+- [x] **Components** -
+created functional React components, often within separate files, and then importing and using them within other components or the main application.  JSX syntax is used within these components to define the structure and elements of the user interface.
+- [x] **Router** - used React Router to define routes, associating specific URLs with components like Login and About. Navigation between these components is achieved using <NavLink> components, which provide active styling and accessibility features, or programmatic navigation functions provided by React Router.
 
 ## 🚀 React part 2: Reactivity
 
