@@ -38,8 +38,8 @@ export function Generate() {
       };
 
       setSavedJokes((prevJokes) => {
-        const updatedJokes = [...prevJokes, newJoke];
-        return updatedJokes.length > 5 ? updatedJokes.slice(1) : updatedJokes;
+        const updatedJokes = [newJoke, ...prevJokes];
+        return updatedJokes.length > 5 ? updatedJokes.slice(0, 5) : updatedJokes;
       });
 
       setEvents((prevEvents) => {
@@ -59,8 +59,8 @@ export function Generate() {
   const handleSaveJoke = () => {
     if (currentJoke) {
       setSavedJokes((prevJokes) => {
-        const updatedJokes = [...prevJokes, { username, joke: currentJoke }];
-        return updatedJokes.length > 5 ? updatedJokes.slice(1) : updatedJokes;
+        const updatedJokes = [{ username, joke: currentJoke }, ...prevJokes];
+        return updatedJokes.length > 5 ? updatedJokes.slice(0, 5) : updatedJokes;
       });
       setShowSaveButton(false);
     }
