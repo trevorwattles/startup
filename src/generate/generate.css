@@ -73,6 +73,7 @@ nav menu a:hover {
 }
 
 button {
+  margin-bottom: 15px;
   margin-top: 15px;
   padding: 15px 30px;
   font-size: 1.2rem;
