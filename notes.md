@@ -70,7 +70,7 @@ To highlight a section only on hover, use:
 section:hover {
   border-left: solid 1em purple;
 }
-
+```
 
 
 ## first instruction notes
@@ -79,3 +79,43 @@ git clone "url" will put the repository into your working directory
 git add --all will add the files ready to commit
 git commit -am "your notes" will commit your changes
 git push will push it all to your github
+
+# Simon React Phase 2: Reactivity - Notes
+
+## Component Reactivity
+- Converted static JSX components into dynamic, interactive ones using `useState` and `useEffect`.
+- Example: The `About` component now initializes state variables for an image and a quote, making it ready for future API integration.
+
+## Play Component Structure
+- Organized using parent-child components:
+  - `Play` → `Players` (handles WebSocket messages) and `SimonGame` (handles game logic)
+  - `SimonGame` → `SimonButton` (individual game buttons)
+- Introduced `gameNotifier.js` to simulate incoming player scores.
+
+## Game Logic Implementation
+- **Key state variables:**
+  - `allowPlayer`: Controls user interaction.
+  - `sequence`: Stores the correct order of button presses.
+  - `playbackPos`: Tracks the user’s progress in matching the sequence.
+- Game rules enforced via `onPressed()` function, which checks button presses, updates progress, and handles mistakes.
+
+## Scores Component
+- Retrieves and displays saved scores from local storage.
+- Uses JSX to dynamically generate a leaderboard table.
+
+## Login & Authentication
+- Implemented authentication state (`authState`) in `App.jsx`, affecting navigation menu visibility.
+- Used state lifting to manage login/logout transitions between `Login`, `Authenticated`, and `Unauthenticated` components.
+- **Future improvement:** Store authentication tokens instead of local username.
+
+## Development & Deployment
+- Cloned and explored the repository, debugging frontend and backend.
+- Vite serves frontend dynamically (`npm run dev`); avoid using `live server`.
+- Used `deployReact.sh` for production deployment, which bundles React files using Vite before uploading to the server.
+
+## Next Steps
+- Future enhancements include integrating real-time WebSockets for multiplayer interaction and fetching live quotes/images in `About`.
+- Need to refine the login system with actual authentication and authorization mechanisms.
+
+By implementing reactivity, we now have a functional, interactive Simon game ready for further enhancements.
+
