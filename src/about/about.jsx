@@ -1,6 +1,19 @@
 import React from 'react';
+import './about.css';
+
 
 export function About() {
+  const [imageUrl, setImageUrl] = React.useState('data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=');
+  const [quote, setQuote] = React.useState('Loading...');
+  const [quoteAuthor, setQuoteAuthor] = React.useState('unknown');
+
+  
+  React.useEffect(() => {
+    setImageUrl(`placeholder.jpg`);
+    setQuote('Show me the code');
+    setQuoteAuthor('Linus Torvalds');
+  }, []);
+
   return (
     <main>
       <div id="picture" class="picture-box"><img width="400px" src="laughing.png" alt="random" /></div>
