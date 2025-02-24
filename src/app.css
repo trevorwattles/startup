@@ -78,7 +78,7 @@ nav ul a:hover {
 }
 
 form {
-  background-color: #222;
+  background-color: #121212;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
@@ -93,7 +93,7 @@ form div {
   justify-content: start;
   gap: 10px;
   margin: 10px 0;
-  background: #333;
+  background: #121212;
   padding: 10px;
   border-radius: 5px;
 }
