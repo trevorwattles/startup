@@ -1,60 +1,86 @@
 import React, { useState, useEffect } from "react";
+import { Username } from "./username";
+import { JokeGenerator } from "./jokeGenerator";
+import { RecentlySaved } from "./recentlySaved";
 
 export function Generate() {
-  const [username, setUsername] = useState("Mystery User");
-  const [joke, setJoke] = useState("");
-  const [showSaveButton, setShowSaveButton] = useState(false);
+  const getUserName = () => {
+    const email = localStorage.getItem("userName") || "Mystery User";
+    return email.includes("@") ? email.split("@")[0] : email;
+  };
 
-  // Get username from URL parameters when component loads
+  const [savedJokes, setSavedJokes] = useState([
+    { username: "Sarah", joke: "I told my suitcase there'd be no vacations… now it’s emotional baggage." },
+    { username: "Ashley", joke: "Parallel lines have so much in common. Too bad they’ll never meet." },
+    { username: "James", joke: "Why did the scarecrow win an award? He was outstanding in his field." },
+  ]);
+  const [currentJoke, setCurrentJoke] = useState("");
+  const [showSaveButton, setShowSaveButton] = useState(false);
+  const [username, setUsername] = useState(getUserName());
+  const [events, setEvents] = useState([]);
+
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const user = params.get("username") || "Mystery User";
-    setUsername(user);
+    setUsername(getUserName());
   }, []);
 
-  // Function to generate a random joke
-  const generateJoke = () => {
-    const jokes = [
-      "I told my suitcase there'd be no vacations… now it’s emotional baggage.",
-      "Parallel lines have so much in common. Too bad they’ll never meet.",
-      "Why did the scarecrow win an award? He was outstanding in his field.",
-    ];
+  const randomUsers = ["Emily", "Michael", "David", "Jessica", "Daniel"];
+  const randomJokes = [
+    "Why don’t skeletons fight each other? They don’t have the guts.",
+    "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+    "Why don’t eggs tell jokes? They might crack up.",
+  ];
 
-    const randomIndex = Math.floor(Math.random() * jokes.length);
-    const jokeText = jokes[randomIndex];
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newJoke = {
+        username: randomUsers[Math.floor(Math.random() * randomUsers.length)],
+        joke: randomJokes[Math.floor(Math.random() * randomJokes.length)],
+      };
 
-    setJoke(jokeText);
-    setShowSaveButton(true); // Show save button
+      setSavedJokes((prevJokes) => {
+        const updatedJokes = [...prevJokes, newJoke];
+        return updatedJokes.length > 5 ? updatedJokes.slice(1) : updatedJokes;
+      });
+
+      setEvents((prevEvents) => {
+        let newEvents = [newJoke, ...prevEvents];
+        return newEvents.length > 10 ? newEvents.slice(0, 10) : newEvents;
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleJokeGenerated = (joke) => {
+    setCurrentJoke(joke);
+    setShowSaveButton(true);
   };
 
-  // Function to save joke
-  const saveJoke = () => {
-    if (joke) {
-      alert(`Joke saved: ${joke}`);
+  const handleSaveJoke = () => {
+    if (currentJoke) {
+      setSavedJokes((prevJokes) => {
+        const updatedJokes = [...prevJokes, { username, joke: currentJoke }];
+        return updatedJokes.length > 5 ? updatedJokes.slice(1) : updatedJokes;
+      });
+      setShowSaveButton(false);
     }
   };
+
+  function createMessageArray() {
+    return events.map((event, i) => (
+      <div key={i} className='event'>
+        <span className={'player-event'}>{event.username}</span> {event.joke}
+      </div>
+    ));
+  }
 
   return (
     <main>
       <h1>Welcome, {username}</h1>
-
-      <button onClick={generateJoke}>Generate Joke</button>
-      <p style={{ opacity: joke ? 1 : 0, transform: "translateY(0)", border: joke ? "2px solid #ffcc00" : "none" }}>
-        {joke}
-      </p>
-
-      {showSaveButton && (
-        <button onClick={saveJoke} style={{ display: "block" }}>
-          Save Joke
-        </button>
-      )}
-
-      <h3>Saved Jokes from Users</h3>
-      <ul className="notification">
-        <li className="user-name">Sarah saved "I told my suitcase there'd be no vacations… now it’s emotional baggage."</li>
-        <li className="user-name">Ashley saved "Parallel lines have so much in common. Too bad they’ll never meet."</li>
-        <li className="user-name">James saved "Why did the scarecrow win an award? He was outstanding in his field."</li>
-      </ul>
+      <JokeGenerator onJokeGenerated={handleJokeGenerated} />
+      {showSaveButton && <button onClick={handleSaveJoke}>Save Joke</button>}
+      <RecentlySaved savedJokes={savedJokes} />
+      <div id='player-messages'>{createMessageArray()}</div>
     </main>
   );
 }
