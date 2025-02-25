@@ -21,7 +21,7 @@ export default function App() {
     <BrowserRouter>
       <div className="body bg-dark text-light">
         <header>
-          <h1>Gigglr<sup>&reg;</sup></h1>
+          <h1>Gigglr</h1>
           <nav>
             <ul>
               <li><NavLink to="/" className={({ isActive }) => isActive ? "active-link" : ""}>Home</NavLink></li>
