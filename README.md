@@ -149,9 +149,54 @@ created functional React components, often within separate files, and then impor
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - My project is fully functional in terms of generating, saving, and retrieving jokes on a per-user basis using localStorage. Users can generate jokes, save them, and view their saved jokes, which persist across page reloads. The authentication system allows for a personalized experience by storing usernames, and the UI dynamically updates based on authentication state. However, the website currently does not retrieve jokes from an external API or allow users to see jokes saved by other users. Instead, each user's saved jokes are stored locally on their own device. Implementing an API for joke retrieval or a database for shared storage will be the next step in making the platform more interactive and connected across users.
+- [x] **Hooks** - In my project, I utilized React’s useState and useEffect hooks to manage state dynamically and interact with localStorage to persist user data. These hooks allowed me to build a more interactive and personalized experience for users.
 
+State Management with useState
+I used the useState hook in multiple components to store and update data dynamically. For example, in JokeGenerator.jsx, I used useState to store the currently generated joke:
+
+```jsx
+const [joke, setJoke] = useState("");
+```
+Each time a new joke is generated, setJoke updates the state with the newly generated joke, ensuring that the displayed text updates immediately. Additionally, I implemented a function to save jokes under a user-specific key in localStorage:
+
+```jsx
+const saveJoke = (newJoke) => {
+    const username = getUserName();
+    const savedJokesKey = `savedJokes_${username}`;
+    const savedJokes = JSON.parse(localStorage.getItem(savedJokesKey)) || [];
+    
+    if (!savedJokes.includes(newJoke)) {
+        const updatedJokes = [...savedJokes, newJoke];
+        localStorage.setItem(savedJokesKey, JSON.stringify(updatedJokes));
+    }
+};
+```
+This ensures that generated jokes can be saved and later retrieved under each user's account.
+
+Using useEffect for Persistent Data Retrieval
+The useEffect hook plays a crucial role in my project by fetching stored data when components mount. This is especially important in Saved.jsx, where I used useEffect to retrieve saved jokes from localStorage when the component loads:
+
+```jsx
+useEffect(() => {
+    const username = getUserName();
+    const savedJokesKey = `savedJokes_${username}`;
+    const storedJokes = JSON.parse(localStorage.getItem(savedJokesKey)) || [];
+    setSavedJokes(storedJokes);
+}, []);
+```
+This ensures that saved jokes persist across page reloads, enhancing the user experience by making previously saved jokes available immediately.
+
+Similarly, in Username.jsx, I used useState and useEffect to extract the username from localStorage and display it in the header:
+
+```jsx
+const [username, setUsername] = useState(getUserName());
+
+useEffect(() => {
+    setUsername(getUserName());
+}, []);
+```
+This keeps the username updated based on stored data, ensuring a personalized experience for returning users.
 ## 🚀 Service deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
