@@ -151,8 +151,29 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [x] **All functionality implemented or mocked out** - My project is fully functional in terms of generating, saving, and retrieving jokes on a per-user basis using localStorage. Users can generate jokes, save them, and view their saved jokes, which persist across page reloads. The authentication system allows for a personalized experience by storing usernames, and the UI dynamically updates based on authentication state. However, the website currently does not retrieve jokes from an external API or allow users to see jokes saved by other users. Instead, each user's saved jokes are stored locally on their own device. Implementing an API for joke retrieval or a database for shared storage will be the next step in making the platform more interactive and connected across users.
 - [x] **Hooks** - In my project, I utilized React’s useState and useEffect hooks to manage state dynamically and interact with localStorage to persist user data. These hooks allowed me to build a more interactive and personalized experience for users.
+1. **State Management (`useState`)**
+   - `savedJokes` holds the list of saved jokes.
+   - `initialJokes` contains predefined jokes from **Sarah, Ashley, and James**.
+
+2. **Periodic Joke Updates (`useEffect`)**
+   - Every **4 seconds**, a **random joke** from `initialJokes` is **added** to `savedJokes`.
+   - The list is limited to the **latest 5 jokes** to prevent overflow.
+
+3. **Displaying Jokes in `RecentlySaved.jsx`**
+   - The `savedJokes` state is passed as a **prop** to `RecentlySaved.jsx`.
+   - It dynamically renders the jokes, ensuring **both random and manually saved jokes** appear together.
+
+4. **User-Saved Jokes**
+   - Users can **manually save** a joke, which is added to `savedJokes`.
+   - The list updates to include both **random and user-saved jokes**.
+
+### Outcome
+- Every **4 seconds**, a joke from **Sarah, Ashley, or James** is added.
+- User-saved jokes appear **alongside automatically added jokes**.
+- The list always shows the **5 most recent jokes**.
 
 State Management with useState
+
 I used the useState hook in multiple components to store and update data dynamically. For example, in JokeGenerator.jsx, I used useState to store the currently generated joke:
 
 ```jsx
