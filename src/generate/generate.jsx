@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Username } from "./Username";
 import { JokeGenerator } from "./jokeGenerator";
-import { RecentlySaved } from "./recentlySaved";
+import { RecentlySaved } from "./RecentlySaved";
 
 export function Generate() {
   const getFormattedUserName = () => {
