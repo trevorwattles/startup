@@ -119,3 +119,9 @@ git push will push it all to your github
 
 By implementing reactivity, we now have a functional, interactive Simon game ready for further enhancements.
 
+# Simon Service Notes
+
+-This project integrates a backend web service using Node.js and Express to serve the Simon frontend, manage authentication, and store high scores in memory. The service provides endpoints for user authentication (/api/auth/create, /api/auth/login, /api/auth/logout) and score management (/api/scores, /api/score), using JSON-based communication. Authentication relies on cookies, and password security is enhanced with bcrypt for hashing. A key part of the setup is middleware authentication (verifyAuth), which restricts access to certain endpoints, ensuring that only logged-in users can submit or retrieve scores. The service also dynamically fetches third-party content, such as inspirational quotes and random images, using external APIs.
+
+-For development, Vite is configured to proxy API requests to the backend while serving the React frontend separately. The deployment process requires bundling the React app and copying it to the backend’s public directory so the service can serve it in production. The provided deployService.sh script automates this process, ensuring the correct port configurations for deployment. Debugging tools like VS Code’s debugger and browser dev tools help test and refine both backend and frontend functionalities. Understanding this structure is crucial for expanding the service, such as integrating persistent storage or adding new endpoints.
+
