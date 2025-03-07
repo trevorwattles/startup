@@ -19,7 +19,7 @@ export function Unauthenticated(props) {
 
   return (
     <>
-      <form className="login-form" onSubmit={handleSubmit}>
+      <form className="login-form">
         <div className='input-group mb-3'>
           <span className='input-group-text'>@</span>
           <input 
