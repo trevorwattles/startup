@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Username } from "./Username";
-import { JokeGenerator } from "./jokeGenerator";
+import { JokeGenerator } from "./JokeGenerator";
 import { RecentlySaved } from "./RecentlySaved";
 
 export function Generate() {

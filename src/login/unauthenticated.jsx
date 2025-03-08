@@ -7,14 +7,29 @@ export function Unauthenticated(props) {
   const [password, setPassword] = React.useState('');
   const [displayError, setDisplayError] = React.useState(null);
 
-  async function handleSubmit(event) {
-    event.preventDefault(); // Prevents form from reloading the page
-    if (!userName || !password) {
-      setDisplayError("Please enter both a username and password.");
-      return;
+  async function loginUser() {
+    loginOrCreate(`/api/auth/login`);
+  }
+
+  async function createUser() {
+    loginOrCreate(`/api/auth/create`);
+  }
+
+  async function loginOrCreate(endpoint) {
+    const response = await fetch(endpoint, {
+      method: 'post',
+      body: JSON.stringify({ email: userName, password: password }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    if (response?.status === 200) {
+      localStorage.setItem('userName', userName);
+      props.onLogin(userName);
+    } else {
+      const body = await response.json();
+      setDisplayError(`⚠ Error: ${body.msg}`);
     }
-    localStorage.setItem('userName', userName);
-    props.onLogin(userName);
   }
 
   return (
@@ -39,10 +54,10 @@ export function Unauthenticated(props) {
             placeholder='password' 
           />
         </div>
-        <Button type="submit" variant='primary' disabled={!userName || !password}>
+        <Button variant='primary' onClick={() => loginUser()} disabled={!userName || !password}>
           Login
         </Button>
-        <Button type="button" variant='secondary' onClick={() => props.onLogin(userName)} disabled={!userName || !password}>
+        <Button variant='secondary' onClick={() => createUser()} disabled={!userName || !password}>
           Create
         </Button>
       </form>
