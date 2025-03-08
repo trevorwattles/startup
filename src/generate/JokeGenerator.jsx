@@ -10,13 +10,21 @@ export function JokeGenerator({ onJokeGenerated }) {
 
   const saveJoke = (newJoke) => {
     const username = getUserName();
-    const savedJokesKey = `savedJokes_${username}`;
-    const savedJokes = JSON.parse(localStorage.getItem(savedJokesKey)) || [];
-    
-    if (!savedJokes.includes(newJoke)) {
-      const updatedJokes = [...savedJokes, newJoke];
-      localStorage.setItem(savedJokesKey, JSON.stringify(updatedJokes));
-    }
+    fetch("http://localhost:4000/joke", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, joke: newJoke }),
+    })
+    .then((response) => {
+      if (response.status === 204 || response.headers.get("Content-Length") === "0") {
+        return {}; // Return an empty object if there's no content.
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Optionally handle the response data.
+    })
+    .catch((error) => console.error("Error posting joke:", error));
   };
 
   const generateJoke = () => {

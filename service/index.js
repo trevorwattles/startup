@@ -2,6 +2,7 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
+const cors = require('cors');
 const app = express();
 
 const authCookieName = 'token';
@@ -13,6 +14,7 @@ let jokes = [];
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
+app.use(cors());
 // JSON body parsing using built-in middleware
 app.use(express.json());
 
@@ -87,6 +89,27 @@ const verifyAuth = async (req, res, next) => {
     res.status(401).send({ msg: 'Unauthorized' });
   }
 };
+
+app.post('/joke', (req, res) => {
+  const { username, joke } = req.body;
+  if (!username || !joke) {
+    return res.status(400).json({ error: 'Username and joke are required.' });
+  }
+  // Create a joke object and add a timestamp.
+  const newJoke = { username, joke, timestamp: new Date() };
+  jokes.push(newJoke);
+  res.status(201).json({ message: 'Joke saved successfully.', joke: newJoke });
+});
+
+app.get('/jokes', (req, res) => {
+  const { username } = req.query;
+  if (username) {
+    const userJokes = jokes.filter(item => item.username === username);
+    return res.json(userJokes);
+  }
+  // Return all jokes if no username filter is provided.
+  res.json(jokes);
+});
 
 // Default error handler
 app.use(function (err, req, res, next) {
