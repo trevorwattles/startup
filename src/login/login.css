@@ -15,6 +15,12 @@
     min-height: 100vh;
     justify-content: space-between; /* Ensure content takes space and footer stays at the bottom */
   }
+  .modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: var(--bs-modal-padding);
+    color: black;
+  }
   .btn-primary {
     margin-bottom: 15px;
     margin-right: 15px;
