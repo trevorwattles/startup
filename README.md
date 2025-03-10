@@ -222,8 +222,8 @@ This keeps the username updated based on stored data, ensuring a personalized ex
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **Node.js/Express HTTP service** - completed
-- [x] **Static middleware for frontend** - completed
+- [x] **Node.js/Express HTTP service** - My code leverages Node.js and Express to create an HTTP server that handles requests for both authentication and joke management. By using middleware for JSON body parsing, cookie handling, and static file serving, it organizes routes with an Express router, ensuring a modular and scalable structure for handling API endpoints and serving the front-end content.
+- [x] **Static middleware for frontend** - completed. I called app.use(express.static('public')), which tells Express to serve files directly from the "public" directory. This means that any requests for static assets like HTML, CSS, JavaScript, or images are automatically routed to files in that folder without needing to define individual routes for each asset.
 - [x] **Calls to third party endpoints** - uses a third party API to generate the jokes.
 - [x] **Backend service endpoints** - My service exposes endpoints for user authentication (registration, login, and logout) under the /api/auth route, while also providing endpoints for posting and retrieving jokes. Some joke endpoints (like GET /api/jokes and POST /api/joke) require valid authentication via a secure token, whereas others (such as the top-level POST /joke and GET /jokes) are accessible without authentication, offering flexibility in how jokes are handled.
 - [x] **Frontend calls service endpoints** - completed using the fetch function. Used in JokeGenerator.jsx, unauthenticated.jsx, authenticated.jsx, saved.jsx and more. 
