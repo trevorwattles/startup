@@ -222,11 +222,11 @@ This keeps the username updated based on stored data, ensuring a personalized ex
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - completed
+- [x] **Static middleware for frontend** - completed
+- [x] **Calls to third party endpoints** - uses a third party API to generate the jokes.
+- [x] **Backend service endpoints** - My service exposes endpoints for user authentication (registration, login, and logout) under the /api/auth route, while also providing endpoints for posting and retrieving jokes. Some joke endpoints (like GET /api/jokes and POST /api/joke) require valid authentication via a secure token, whereas others (such as the top-level POST /joke and GET /jokes) are accessible without authentication, offering flexibility in how jokes are handled.
+- [x] **Frontend calls service endpoints** - completed using the fetch function. Used in JokeGenerator.jsx, unauthenticated.jsx, authenticated.jsx, saved.jsx and more. 
 
 ## 🚀 DB/Login deliverable
 
