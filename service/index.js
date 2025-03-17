@@ -4,12 +4,9 @@ const express = require('express');
 const uuid = require('uuid');
 const cors = require('cors');
 const app = express();
+const DB = require('./database');
 
 const authCookieName = 'token';
-
-// The scores and users are saved in memory and disappear whenever the service is restarted.
-let users = [];
-let jokes = [];
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -30,13 +27,10 @@ app.use(`/api`, apiRouter);
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
-  console.log("Received request to create user:", req.body.email);
   if (await findUser('email', req.body.email)) {
-    console.log("User already exists:", req.body.email);
     res.status(409).send({ msg: 'Existing user' });
   } else {
     const user = await createUser(req.body.email, req.body.password);
-    console.log("User created successfully:", user.email);
     setAuthCookie(res, user.token);
     res.send({ email: user.email });
   }
