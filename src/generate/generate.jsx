@@ -39,13 +39,25 @@ export function Generate() {
 
   const handleSaveJoke = () => {
     if (currentJoke) {
-      setSavedJokes((prevJokes) => {
-        const updatedJokes = [{ username: getFormattedUserName(), joke: currentJoke }, ...prevJokes];
-        return updatedJokes.length > 5 ? updatedJokes.slice(0, 5) : updatedJokes;
-      });
-      setShowSaveButton(false);
+      // Save joke via API call
+      const username = getFormattedUserName();
+      fetch("/api/joke", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ username, joke: currentJoke }),
+      })
+        .then(() => {
+          // Optionally update savedJokes state if API call succeeds
+          setSavedJokes((prevJokes) => {
+            const updatedJokes = [{ username, joke: currentJoke }, ...prevJokes];
+            return updatedJokes.length > 5 ? updatedJokes.slice(0, 5) : updatedJokes;
+          });
+          setShowSaveButton(false);
+        })
+        .catch((error) => console.error("Error saving joke:", error));
     }
   };
+  
 
   function createMessageArray() {
     return events.map((event, i) => (

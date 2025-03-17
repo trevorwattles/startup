@@ -11,7 +11,7 @@ export function Saved() {
 
   useEffect(() => {
     const username = getUserName();
-    fetch('/api/jokes')
+    fetch('/api/jokes?username=' + username)
       .then((res) => res.json())
       .then((savedJokes) => setSavedJokes(savedJokes))
       .catch((error) => console.error("Error fetching jokes:", error));

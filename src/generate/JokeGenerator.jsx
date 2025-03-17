@@ -29,7 +29,7 @@ export function JokeGenerator({ onJokeGenerated }) {
         const jokeText = data.joke;
         setJoke(jokeText);
         onJokeGenerated(jokeText);
-        saveJoke(jokeText);
+        //saveJoke(jokeText);
       })
       .catch((error) => console.error("Error fetching joke:", error));
   };
