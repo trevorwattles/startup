@@ -38,6 +38,12 @@ async function addSave(save) {
   return scoreCollection.insertOne(score);
 }
 
+async function getSaves(username = null) {
+    const query = username ? { username: username } : {}; 
+    return saveCollection.find(query).toArray();
+  }
+  
+
 
 module.exports = {
   getUser,

@@ -64,33 +64,44 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 
 // Middleware to verify that the user is authorized to call an endpoint
 const verifyAuth = async (req, res, next) => {
-  console.log("Verifying authentication");
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
-    console.log("User authenticated:", user.email);
     next();
   } else {
-    console.log("Unauthorized access attempt");
     res.status(401).send({ msg: 'Unauthorized' });
   }
 };
 
-app.post('/joke', (req, res) => {
-  const { username, joke } = req.body;
-  if (!username || !joke) {
-    return res.status(400).json({ error: 'Username and joke are required.' });
+app.post('/joke', async (req, res) => {
+  try {
+    const { email, joke } = req.body;
+
+    if (!email || !joke) {
+      return res.status(400).json({ msg: 'Email and joke are required' });
+    }
+
+    console.log(`Adding joke for user: ${email}`);
+
+    // Create the joke object with a timestamp
+    const newJoke = { email, joke, timestamp: new Date() };
+
+    // Add the joke to the database
+    const updatedJokes = await updateJokes(newJoke);
+
+    console.log(`Joke added successfully for ${email}`);
+
+    res.status(201).json({ msg: 'Joke added successfully', jokes: updatedJokes });
+  } catch (error) {
+    console.error('Error adding joke:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
-  // Create a joke object and add a timestamp.
-  const newJoke = { username, joke, timestamp: new Date() };
-  jokes.push(newJoke);
-  res.status(201).json({ message: 'Joke saved successfully.', joke: newJoke });
 });
 
-app.get('/jokes', (req, res) => {
+
+app.get('/jokes', async (req, res) => {
   const { username } = req.query;
   if (username) {
-    const userJokes = jokes.filter(item => item.username === username);
-    return res.json(userJokes);
+    const userJokes = await DB.getSaves(username);
   }
   // Return all jokes if no username filter is provided.
   res.json(jokes);
@@ -98,7 +109,6 @@ app.get('/jokes', (req, res) => {
 
 // Default error handler
 app.use(function (err, req, res, next) {
-  console.error("Error occurred:", err);
   res.status(500).send({ type: err.name, message: err.message });
 });
 
@@ -179,21 +189,8 @@ apiRouter.post('/joke', verifyAuth, (req, res) => {
   });
   
 
-function updateJokes(email, joke) {
-    // Ensure jokes exist for user
-    if (!Array.isArray(jokes)) {
-      jokes = [];
-    }
-  
-    // Add new joke to the array
-    const newJoke = { email, joke };
-    jokes = [...jokes, newJoke]; // Functional update
-  
-    // Optional: Keep only the last 20 jokes to avoid infinite memory growth
-    if (jokes.length > 20) {
-      jokes = jokes.slice(-20);
-    }
-  
-    return jokes;
+async function updateJokes(newJoke) {
+    await DB.addSave(newJoke);
+    return DB.getSaves();
   }
   
