@@ -5,7 +5,7 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 const client = new MongoClient(url);
 const db = client.db('gigglr');
 const userCollection = db.collection('user');
-const scoreCollection = db.collection('save');
+const saveCollection = db.collection('save');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -35,10 +35,11 @@ async function updateUser(user) {
 }
 
 async function addSave(save) {
-  return scoreCollection.insertOne(save);
+  return saveCollection.insertOne(save);
 }
 
-async function getSaves() { 
+async function getSaves(email) {
+    const query = email ? { email: email } : {};
     return saveCollection.find(query).toArray();
   }
   

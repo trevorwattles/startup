@@ -119,23 +119,21 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-apiRouter.get('/scores', verifyAuth, async (req, res) => {
-  const scores = await DB.getJokes();
-  res.send(scores);
-});
-
-
-
-// POST /joke - Add a new joke for a user
 apiRouter.post('/joke', verifyAuth, async (req, res) => {
   const jokes = updateJokes(req.body);
-  res.send(jokes);
+  res.json(jokes);
 });
 
   
 
+apiRouter.get('/jokes', verifyAuth, async (req, res) => {
+  const email = req.query.email;
+  const jokes = await DB.getSaves(email);
+  res.json(jokes);
+});
+
 async function updateJokes(newJoke) {
-    await DB.addSave(newJoke);
-    return DB.getSaves();
-  }
+  await DB.addSave(newJoke);
+  return DB.getSaves(newJoke.email);  
+}
   
