@@ -119,7 +119,6 @@ app.use((_req, res) => {
 });
 
 async function createUser(email, password) {
-  console.log("Creating user:", email);
   const passwordHash = await bcrypt.hash(password, 10);
   
   const user = {
@@ -127,8 +126,7 @@ async function createUser(email, password) {
     password: passwordHash,
     token: uuid.v4(),
   };
-  users.push(user);
-  console.log("User successfully added:", email);
+  await DB.addUser(user);
   return user;
 }
 
