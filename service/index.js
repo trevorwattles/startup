@@ -131,15 +131,12 @@ async function createUser(email, password) {
 }
 
 async function findUser(field, value) {
-  console.log(`Searching for user by ${field}:`, value);
   if (!value) return null;
-  const user = users.find((u) => u[field] === value);
-  if (user) {
-    console.log("User found:", user.email);
-  } else {
-    console.log("User not found");
+
+  if (field === 'token') {
+    return DB.getUserByToken(value);
   }
-  return user;
+  return DB.getUser(value);
 }
 
 // setAuthCookie in the HTTP response
