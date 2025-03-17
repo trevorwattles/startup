@@ -38,34 +38,25 @@ apiRouter.post('/auth/create', async (req, res) => {
 
 // GetAuth login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
-  console.log("Received login request for:", req.body.email);
   const user = await findUser('email', req.body.email);
   if (user) {
-    console.log("User found:", user.email);
     if (await bcrypt.compare(req.body.password, user.password)) {
-      console.log("Password match for user:", user.email);
       user.token = uuid.v4();
+      await DB.updateUser(user);
       setAuthCookie(res, user.token);
       res.send({ email: user.email });
       return;
-    } else {
-      console.log("Incorrect password for user:", req.body.email);
     }
-  } else {
-    console.log("User not found:", req.body.email);
   }
   res.status(401).send({ msg: 'Unauthorized' });
 });
 
 // DeleteAuth logout a user
 apiRouter.delete('/auth/logout', async (req, res) => {
-  console.log("Received logout request");
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
-    console.log("Logging out user:", user.email);
     delete user.token;
-  } else {
-    console.log("No user found to log out");
+    DB.updateUser(user);
   }
   res.clearCookie(authCookieName);
   res.status(204).end();
