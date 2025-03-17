@@ -39,8 +39,7 @@ async function addSave(save) {
 }
 
 async function getSaves(email) {
-    const query = email ? { email: email } : {};
-    return saveCollection.find(query).toArray();
+    
   }
   
 
