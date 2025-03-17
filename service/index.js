@@ -119,21 +119,5 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-apiRouter.post('/joke', verifyAuth, async (req, res) => {
-  const jokes = updateJokes(req.body);
-  res.json(jokes);
-});
 
-  
-
-apiRouter.get('/jokes', verifyAuth, async (req, res) => {
-  const email = req.query.email;
-  const jokes = await DB.getSaves(email);
-  res.json(jokes);
-});
-
-async function updateJokes(newJoke) {
-  await DB.addSave(newJoke);
-  return DB.getSaves(newJoke.email);  
-}
   
