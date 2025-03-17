@@ -38,9 +38,9 @@ async function addSave(save) {
   return saveCollection.insertOne(save);
 }
 
-async function getSaves(email) {
-    
-  }
+async function getSaves(username) {
+  return await saveCollection.find({ username: username }).toArray();
+}
   
 
 

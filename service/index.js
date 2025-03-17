@@ -120,4 +120,19 @@ app.listen(port, () => {
 });
 
 
-  
+apiRouter.post('/joke', async (req, res) => {
+  const jokeData = updateSaves(req.body, req.body.username);
+  res.json(jokeData);
+});
+
+
+apiRouter.get('/jokes', async (req, res) => {
+  const username = req.query.username;
+  const jokeData = await DB.getSaves(username);
+  res.json(jokeData);
+});
+
+async function updateSaves(newSave, username) {
+  await DB.addSave(newSave);
+  return DB.getSaves(username);
+}

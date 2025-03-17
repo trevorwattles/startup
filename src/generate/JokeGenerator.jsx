@@ -8,27 +8,17 @@ export function JokeGenerator({ onJokeGenerated }) {
     return email.includes("@") ? email.split("@")[0] : email;
   };
 
-  const saveJoke = (newJoke) => {
+  async function saveJoke(newJoke) {
     const username = getUserName();
-    fetch("http://localhost:4000/joke", {
+    await fetch("/api/joke", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "content-type": "application/json" },
       body: JSON.stringify({ username, joke: newJoke }),
     })
-      .then((response) => {
-        if (response.status === 204 || response.headers.get("Content-Length") === "0") {
-          return {}; // Return an empty object if there's no content.
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Optionally handle the response data.
-      })
-      .catch((error) => console.error("Error posting joke:", error));
+     
   };
 
   const generateJoke = () => {
-    // Fetch a joke from the third-party API.
     fetch("https://icanhazdadjoke.com/", {
       headers: {
         Accept: "application/json",
