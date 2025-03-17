@@ -35,11 +35,10 @@ async function updateUser(user) {
 }
 
 async function addSave(save) {
-  return scoreCollection.insertOne(score);
+  return scoreCollection.insertOne(save);
 }
 
-async function getSaves(username = null) {
-    const query = username ? { username: username } : {}; 
+async function getSaves() { 
     return saveCollection.find(query).toArray();
   }
   
@@ -51,5 +50,5 @@ module.exports = {
   addUser,
   updateUser,
   addSave,
-  getHighScores,
+  getSaves,
 };

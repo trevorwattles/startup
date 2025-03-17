@@ -119,40 +119,19 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-apiRouter.get('/jokes', verifyAuth, async (req, res) => {
-  try {
-    const { email } = req.query; // Use email as a filter if provided
-    const jokes = email ? await DB.getSaves(email) : await DB.getSaves(); // Fetch user-specific or all jokes
-
-    if (!jokes.length) {
-      return res.status(404).json({ msg: 'No jokes available' });
-    }
-
-    res.status(200).json(jokes);
-  } catch (error) {
-    console.error('Error fetching jokes:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+apiRouter.get('/scores', verifyAuth, async (req, res) => {
+  const scores = await DB.getJokes();
+  res.send(scores);
 });
 
 
 
 // POST /joke - Add a new joke for a user
-apiRouter.post('/joke', verifyAuth, (req, res) => { 
-    const { email, joke } = req.body;
-  
-    if (!email || !joke) {
-      return res.status(400).json({ msg: 'Email and joke are required' });
-    }
-  
-    console.log(`Adding joke for user: ${email}`);
-    
-    jokes = updateJokes(email, joke);
-  
-    console.log(`Joke added successfully for ${email}`);
-  
-    res.status(201).json({ msg: 'Joke added successfully', joke });
-  });
+apiRouter.post('/joke', verifyAuth, async (req, res) => {
+  const jokes = updateJokes(req.body);
+  res.send(jokes);
+});
+
   
 
 async function updateJokes(newJoke) {
