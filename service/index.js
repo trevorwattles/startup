@@ -72,40 +72,6 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
-app.post('/joke', async (req, res) => {
-  try {
-    const { email, joke } = req.body;
-
-    if (!email || !joke) {
-      return res.status(400).json({ msg: 'Email and joke are required' });
-    }
-
-    console.log(`Adding joke for user: ${email}`);
-
-    // Create the joke object with a timestamp
-    const newJoke = { email, joke, timestamp: new Date() };
-
-    // Add the joke to the database
-    const updatedJokes = await updateJokes(newJoke);
-
-    console.log(`Joke added successfully for ${email}`);
-
-    res.status(201).json({ msg: 'Joke added successfully', jokes: updatedJokes });
-  } catch (error) {
-    console.error('Error adding joke:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-
-app.get('/jokes', async (req, res) => {
-  const { username } = req.query;
-  if (username) {
-    const userJokes = await DB.getSaves(username);
-  }
-  // Return all jokes if no username filter is provided.
-  res.json(jokes);
-});
 
 // Default error handler
 app.use(function (err, req, res, next) {
@@ -153,17 +119,22 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-apiRouter.get('/jokes', verifyAuth, (_req, res) => {
-    console.log("Fetching all jokes");
-  
-    if (jokes.length === 0) {
-      console.log("No jokes found");
+apiRouter.get('/jokes', verifyAuth, async (req, res) => {
+  try {
+    const { email } = req.query; // Use email as a filter if provided
+    const jokes = email ? await DB.getSaves(email) : await DB.getSaves(); // Fetch user-specific or all jokes
+
+    if (!jokes.length) {
       return res.status(404).json({ msg: 'No jokes available' });
     }
-  
-    console.log(`Returning ${jokes.length} jokes`);
+
     res.status(200).json(jokes);
-  });
+  } catch (error) {
+    console.error('Error fetching jokes:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 
 // POST /joke - Add a new joke for a user
