@@ -26,7 +26,6 @@ export function Saved() {
     <li key={index}>
       <strong>{jokeObj.username}</strong>: {jokeObj.joke}
       <br />
-      <small>{new Date(jokeObj.timestamp).toLocaleString()}</small>
     </li>
   ))
 ) : (
