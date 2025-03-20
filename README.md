@@ -233,7 +233,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **User registration** - Completed.  Saves the user into a mongodb cluster collection.
-- [ ] **User login and logout** - Completed.  When logging in, the database is checked for the user and when logging out.  Same funcitnallity as simon. 
+- [x] **User login and logout** - Completed.  When logging in, the database is checked for the user and when logging out.  Same funcitnallity as simon. 
 - [x] **Stores data in MongoDB** - All user data and saved jokes are stored in a cluster in mongoDB.  My webpage has both a save and user collection. 
 - [x] **Stores credentials in MongoDB** - Here is an example of what is stored in the save collection when a user saves a joke. 
 _id: ObjectId('67db74e46f7fb9dbd57a587b')
