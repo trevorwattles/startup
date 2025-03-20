@@ -232,11 +232,19 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **User registration** - I did not complete this part of the deliverable.
-- [ ] **User login and logout** - I did not complete this part of the deliverable.
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Restricts functionality based on authentication** - I did not complete this part of the deliverable.
+- [x] **User registration** - Completed.  Saves the user into a mongodb cluster collection.
+- [ ] **User login and logout** - Completed.  When logging in, the database is checked for the user and when logging out.  Same funcitnallity as simon. 
+- [x] **Stores data in MongoDB** - All user data and saved jokes are stored in a cluster in mongoDB.  My webpage has both a save and user collection. 
+- [x] **Stores credentials in MongoDB** - Here is an example of what is stored in the save collection when a user saves a joke. 
+_id: ObjectId('67db74e46f7fb9dbd57a587b')
+username: "jordan123"
+joke: "What type of music do balloons hate? Pop music!"
+Here is what is stores in the user collection
+_id: ('67d7b4a9f150ef67c408944f')
+email: "james@gmail.com"
+password: "$2b$10$KcRkRiW7HiFoXEtGP5H9C.s/7LSYNthTEhIa0asTZJ8Wh5Xk4JoZe"
+token: "25431fca-2aec-4278-872f-c90a83246777"
+- [x] **Restricts functionality based on authentication** - Authentication of user is required when signing in.  Otherwise an account must be created but only one user per email. You can only save jokes if you have created an account. 
 
 ## 🚀 WebSocket deliverable
 
