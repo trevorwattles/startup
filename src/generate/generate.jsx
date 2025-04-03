@@ -34,29 +34,32 @@ export function Generate() {
     setShowSaveButton(true);
   };
 
-  const handleSaveJoke = () => {
+  const handleSaveJoke = async () => {
     if (currentJoke) {
       const username = getFormattedUserName();
       const jokeObj = { username, joke: currentJoke };
-
-      fetch("/api/joke", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(jokeObj),
-      })
-        .then(() => {
-          setSavedJokes((prevJokes) => {
-            const updatedJokes = [jokeObj, ...prevJokes];
-            return updatedJokes.length > 5 ? updatedJokes.slice(0, 5) : updatedJokes;
-          });
-
-          JokeWebSocket.broadcastJoke(username, jokeObj);
-
-          setShowSaveButton(false);
-        })
-        .catch((error) => console.error("Error saving joke:", error));
+  
+      try {
+        await fetch("/api/joke", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(jokeObj),
+        });
+  
+        setSavedJokes((prevJokes) => {
+          const updatedJokes = [jokeObj, ...prevJokes];
+          return updatedJokes.length > 5 ? updatedJokes.slice(0, 5) : updatedJokes;
+        });
+  
+        JokeWebSocket.broadcastJoke(username, jokeObj);
+  
+        setShowSaveButton(false);
+      } catch (error) {
+        console.error("Error saving joke:", error);
+      }
     }
   };
+  
 
   function createMessageArray() {
     return events.map((event, i) => (

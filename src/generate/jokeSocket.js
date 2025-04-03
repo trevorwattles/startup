@@ -20,7 +20,7 @@ const JokeEvent = {
     constructor() {
       const protocol = window.location.protocol === "https:" ? "wss" : "ws";
       const port = window.location.port;
-      this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}`);
+      this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
   
       this.socket.onopen = () => {
         this.receiveJoke(new JokeMessage("JokeApp", JokeEvent.System, { msg: "connected" }));
@@ -40,10 +40,16 @@ const JokeEvent = {
         }
       };
     }
+    
   
     broadcastJoke(from, payload) {
       const event = new JokeMessage(from, JokeEvent.Save, payload);
-      this.socket.send(JSON.stringify(event));
+      
+      if (this.socket.readyState === WebSocket.OPEN) {
+        this.socket.send(JSON.stringify(event));
+      } else {
+        console.warn("⚠️ WebSocket not ready, dropping joke event:", event);
+      }
     }
   
     addHandler(handler) {
