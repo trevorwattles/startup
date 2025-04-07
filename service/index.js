@@ -126,6 +126,17 @@ apiRouter.post('/joke', async (req, res) => {
   res.json(jokeData);
 });
 
+// New endpoint: get globally recent jokes
+apiRouter.get('/recentJokes', async (req, res) => {
+  try {
+    const recentJokes = await DB.getRecentSaves();
+    res.json(recentJokes);
+  } catch (err) {
+    res.status(500).json({ msg: 'Error retrieving recent jokes' });
+  }
+});
+
+
 
 apiRouter.get('/jokes', async (req, res) => {
   const username = req.query.username;

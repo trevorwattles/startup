@@ -15,6 +15,24 @@ export function Generate() {
   const [showSaveButton, setShowSaveButton] = useState(false);
   const [events, setEvents] = useState([]);
 
+  // Fetch the recent jokes from your API endpoint on initial load
+  useEffect(() => {
+    async function fetchRecentJokes() {
+      try {
+        const response = await fetch('/api/recentJokes');
+        if (response.ok) {
+          const jokes = await response.json();
+          setSavedJokes(jokes);
+        } else {
+          console.error('Failed to fetch recent jokes');
+        }
+      } catch (error) {
+        console.error('Error fetching recent jokes:', error);
+      }
+    }
+    fetchRecentJokes();
+  }, []);
+
   useEffect(() => {
     JokeWebSocket.addHandler((jokeObj) => {
       setSavedJokes((prevJokes) => {
@@ -24,8 +42,7 @@ export function Generate() {
     });
 
     return () => {
-      JokeWebSocket.removeHandler((jokeObj) => {
-      });
+      JokeWebSocket.removeHandler((jokeObj) => {});
     };
   }, []);
 
@@ -59,7 +76,6 @@ export function Generate() {
       }
     }
   };
-  
 
   function createMessageArray() {
     return events.map((event, i) => (

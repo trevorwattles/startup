@@ -43,6 +43,9 @@ async function getSaves(username) {
   return await saveCollection.find({ username: username }).toArray();
 }
   
+async function getRecentSaves(limit = 10) {
+  return await saveCollection.find({}).sort({ _id: -1 }).limit(limit).toArray();
+}
 
 
 module.exports = {
@@ -52,4 +55,5 @@ module.exports = {
   updateUser,
   addSave,
   getSaves,
+  getRecentSaves
 };
