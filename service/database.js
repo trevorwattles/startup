@@ -11,12 +11,13 @@ const saveCollection = db.collection('save');
 (async function testConnection() {
   try {
     await db.command({ ping: 1 });
-    console.log(`Connect to database`);
+    console.log('Successfully connected to the database');
   } catch (ex) {
-    console.log(`Unable to connect to database with ${url} because ${ex.message}`);
+    console.error('Database connection failed. Detailed error:', ex);
     process.exit(1);
   }
 })();
+
 
 function getUser(email) {
   return userCollection.findOne({ email: email });
